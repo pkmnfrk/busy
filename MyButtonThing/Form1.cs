@@ -26,7 +26,10 @@ namespace MyButtonThing
 
             button.ConnectedChanged += button_ConnectedChanged;
             button.ButtonPress += button_ButtonPress;
+
+            btnTryAgain.Visible = !button.IsConnected;
         }
+
 
         void button_ButtonPress(object sender, EventArgs e)
         {
@@ -96,7 +99,6 @@ namespace MyButtonThing
             button.TryConnecting();
             this.Invalidate();
         }
-
 
     }
 
