@@ -23,6 +23,7 @@ namespace MyButtonThing
 
             button = new CanFocusButton();
             button.State = ButtonState.TalkToMe;
+            button.AutoManageButton = false;
 
             button.ConnectedChanged += button_ConnectedChanged;
             button.ButtonPress += button_ButtonPress;
@@ -67,9 +68,6 @@ namespace MyButtonThing
         {
             base.OnClick(e);
 
-            button.ToggleLight();
-
-            this.Invalidate();
         }
 
         protected override void OnPaint(PaintEventArgs e)

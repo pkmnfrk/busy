@@ -109,6 +109,10 @@ namespace MyButtonThing
                 {
                     ToggleLight();
                 }
+                else
+                {
+                    PushState();
+                }
 
                 OnButtonPress();
             }
