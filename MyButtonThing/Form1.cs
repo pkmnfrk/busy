@@ -16,6 +16,7 @@ namespace MyButtonThing
     public partial class Form1 : Form
     {
         CanFocusButton button;
+        ActionState currentState = ActionState.None;
 
         public Form1()
         {
@@ -34,7 +35,26 @@ namespace MyButtonThing
 
         void button_ButtonPress(object sender, EventArgs e)
         {
-            this.Invalidate();
+            Action action = () =>
+            {
+                var picker = new ActionChangeDialog(currentState);
+                var result = picker.ShowDialog(this);
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    currentState = picker.NewState;
+                }
+
+                this.Invalidate();
+            };
+
+            if (this.InvokeRequired)
+            {
+                this.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
         }
 
         void button_ConnectedChanged(object sender, ConnectedChangedEventArgs e)
@@ -68,6 +88,7 @@ namespace MyButtonThing
         {
             base.OnClick(e);
 
+            
         }
 
         protected override void OnPaint(PaintEventArgs e)
