@@ -129,6 +129,7 @@
             this.MinimizeBox = false;
             this.Name = "ActionChangeDialog";
             this.Text = "What\'s happening?";
+            this.TopMost = true;
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -9,7 +9,7 @@ using UsbHid.USB.Classes.Messaging;
 
 namespace MyButtonThing
 {
-    public class CanFocusButton
+    public class CanFocusButton : IDisposable
     {
         private static readonly ButtonMessage DNDMessage = new ButtonMessage(ButtonState.DoNotDisturb);
         private static readonly ButtonMessage TTMMessage = new ButtonMessage(ButtonState.TalkToMe);
@@ -171,8 +171,32 @@ namespace MyButtonThing
                     break;
             }
         }
-        
 
+        private bool isDisposed = false;
+
+        protected void Dispose(bool isDisposing)
+        {
+            if(isDisposed) return;
+
+            if (isDisposing)
+            {
+                device.Disconnect();
+                device.Dispose();
+            }
+
+            isDisposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~CanFocusButton()
+        {
+            Dispose(false);
+        }
     }
 
     public class ConnectedChangedEventArgs : EventArgs {

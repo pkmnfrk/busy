@@ -17,6 +17,8 @@ namespace MyButtonThing
     {
         CanFocusButton button;
         ActionState currentState = ActionState.None;
+        bool closing = false;
+
 
         public Form1()
         {
@@ -30,22 +32,36 @@ namespace MyButtonThing
             button.ButtonPress += button_ButtonPress;
 
             btnTryAgain.Visible = !button.IsConnected;
+
+            notifyIcon1.Icon = icons.icoGrey;
         }
 
 
         void button_ButtonPress(object sender, EventArgs e)
         {
+            if (closing) return;
+
             Action action = () =>
             {
-                var picker = new ActionChangeDialog(currentState);
-                var result = picker.ShowDialog(this);
-                if (result == System.Windows.Forms.DialogResult.OK)
+                using (var picker = new ActionChangeDialog(currentState))
                 {
-                    currentState = picker.NewState;
+
+                    var result = picker.ShowDialog(this);
+                    if (result == System.Windows.Forms.DialogResult.OK)
+                    {
+                        currentState = picker.NewState;
+                    }
                 }
 
-                this.Invalidate();
+                notifyIcon1.Icon = icons.icoGreen;
+                button.State = ButtonState.Green;
+
+                UpdateIcon();
+
             };
+
+            button.State = ButtonState.Red;
+            notifyIcon1.Icon = icons.icoRed;
 
             if (this.InvokeRequired)
             {
@@ -59,14 +75,21 @@ namespace MyButtonThing
 
         void button_ConnectedChanged(object sender, ConnectedChangedEventArgs e)
         {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new Action(() =>
+            if (closing) return;
+
+            Action action = () =>
                 {
                     btnTryAgain.Visible = !e.IsConnected;
-                    Debug.WriteLine("Button visible: {0}, IsConnected: {1}", btnTryAgain.Visible, e.IsConnected);
-                    this.Invalidate();
-                }));
+                    notifyIcon1.Icon = e.IsConnected ? icons.icoGreen : icons.icoGrey;
+                };
+
+            if (this.InvokeRequired)
+            {
+                this.Invoke(action);
+            }
+            else
+            {
+                action();
             }
             
 
@@ -89,6 +112,18 @@ namespace MyButtonThing
             base.OnClick(e);
 
             
+        }
+
+        protected override void SetVisibleCore(bool value)
+        {
+            value = false;
+
+            if (!IsHandleCreated)
+            {
+                CreateHandle();
+            }
+
+            base.SetVisibleCore(value);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -117,6 +152,60 @@ namespace MyButtonThing
         {
             button.TryConnecting();
             this.Invalidate();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void UpdateIcon()
+        {
+            switch (currentState)
+            {
+                case ActionState.None:
+                    notifyIcon1.Text = "Task Switcher";
+                    break;
+                case ActionState.Ticket:
+                    notifyIcon1.Text = "Task Switcher - Working on a ticket";
+                    break;
+                case ActionState.Meeting:
+                    notifyIcon1.Text = "Task Switcher - Attending a meeting";
+                    break;
+                case ActionState.Lunch:
+                    notifyIcon1.Text = "Task Switcher - Having lunch";
+                    break;
+                case ActionState.Break:
+                    notifyIcon1.Text = "Task Switcher - Taking a break";
+                    break;
+            }
+        }
+
+        private void mnuIcon_Opening(object sender, CancelEventArgs e)
+        {
+            if (button.IsConnected)
+            {
+                retryConnectionToolStripMenuItem.Visible = false;
+                retryConnectionMenuStripSeparator.Visible = false;
+            }
+            else
+            {
+                retryConnectionMenuStripSeparator.Visible = true;
+                retryConnectionToolStripMenuItem.Visible = true;
+            }
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closing = true;
+            button.Dispose();
+            button = null;
+            Application.Exit();
+        }
+
+        private void retryConnectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button.TryConnecting();
         }
 
     }
