@@ -104,6 +104,10 @@
       <Project>{83bc9702-4192-4654-b359-14cbd71d656e}</Project>
       <Name>UsbHid</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Genome\Genome.csproj">
+      <Project>{6689f4be-e1d9-41a9-8b42-e364299d4aa5}</Project>
+      <Name>Genome</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icoGreen.ico" />

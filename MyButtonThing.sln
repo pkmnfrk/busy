@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyButtonThing", "MyButtonTh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsbHid", "UsbHid\UsbHid.csproj", "{83BC9702-4192-4654-B359-14CBD71D656E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genome", "Genome\Genome.csproj", "{6689F4BE-E1D9-41A9-8B42-E364299D4AA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{83BC9702-4192-4654-B359-14CBD71D656E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83BC9702-4192-4654-B359-14CBD71D656E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83BC9702-4192-4654-B359-14CBD71D656E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6689F4BE-E1D9-41A9-8B42-E364299D4AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6689F4BE-E1D9-41A9-8B42-E364299D4AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6689F4BE-E1D9-41A9-8B42-E364299D4AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6689F4BE-E1D9-41A9-8B42-E364299D4AA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
