@@ -26,6 +26,7 @@ namespace MyButtonThing
         string startInfo;
 
         UserContext userContext;
+        User currentUser;
 
 
         public Form1()
@@ -73,7 +74,7 @@ namespace MyButtonThing
                     userContext = new UserContext(ctx);
 
                     //validate that the context is still good
-                    var currentUser = User.GetCurrentUser(userContext);
+                    currentUser = User.GetCurrentUser(userContext);
                     if (currentUser == null) //nope
                         userContext = null;
                 }
@@ -193,7 +194,7 @@ namespace MyButtonThing
 
             request.Date = startDate.Value;
             request.Duration = (int)timeDiff.TotalMinutes;
-            request.UserID = 4517;
+            request.UserID = currentUser.UserID;
             if (currentState == ActionState.Ticket && !string.IsNullOrEmpty(startInfo) )
             {
                 int ticketId;
