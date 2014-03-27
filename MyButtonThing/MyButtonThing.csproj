@@ -65,6 +65,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>icons.resx</DependentUpon>
     </Compile>
+    <Compile Include="PlaceholderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PlaceholderTextBox.Designer.cs">
+      <DependentUpon>PlaceholderTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ActionChangeDialog.resx">

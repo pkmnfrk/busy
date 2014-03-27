@@ -23,6 +23,7 @@ namespace MyButtonThing
         bool closing = false;
 
         DateTime? startDate;
+        string startInfo;
 
         UserContext userContext;
 
@@ -49,6 +50,7 @@ namespace MyButtonThing
                 {
                     var start = DateTime.FromBinary((long)tmp);
                     var action = (string)regKey.GetValue("ActionState", "");
+                    var info = (string)regKey.GetValue("ActionInfo", "");
 
                     if (start.Date == DateTime.Now.Date)
                     {
@@ -57,6 +59,7 @@ namespace MyButtonThing
                         if (result == System.Windows.Forms.DialogResult.Yes)
                         {
                             startDate = start;
+                            startInfo = info;
                             currentState = (ActionState)Enum.Parse(typeof(ActionState), action);
                             UpdateIcon();
                         }
@@ -122,6 +125,7 @@ namespace MyButtonThing
                         {
                             StopTracking();
                             currentState = picker.NewState;
+                            startInfo = picker.ExtraInfo;
                             StartTracking();
 
                         }
@@ -164,6 +168,7 @@ namespace MyButtonThing
 
                 Registry.SetValue(registryRoot + "\\" + registryKey, "StartDate", startDate.Value.ToBinary(), RegistryValueKind.QWord);
                 Registry.SetValue(registryRoot + "\\" + registryKey, "ActionState", currentState.ToString());
+                Registry.SetValue(registryRoot + "\\" + registryKey, "ActionInfo", startInfo.ToString());
             }
         }
 
@@ -175,6 +180,7 @@ namespace MyButtonThing
             {
                 key.DeleteValue("StartDate", false);
                 key.DeleteValue("ActionState", false);
+                key.DeleteValue("ActionInfo", false);
             }
 
             if (currentState == ActionState.None) return;
@@ -188,8 +194,43 @@ namespace MyButtonThing
             request.Date = startDate.Value;
             request.Duration = (int)timeDiff.TotalMinutes;
             request.UserID = 4517;
-            request.Type = "Schedule-Note";
-            request.Note = currentState.ToString();
+            if (currentState == ActionState.Ticket && !string.IsNullOrEmpty(startInfo) )
+            {
+                int ticketId;
+                if(int.TryParse(startInfo, out ticketId)) {
+
+                    //need a bit more info about the ticket, unfortunately
+
+                    var ticket = Ticket.GetTicketById(userContext, ticketId);
+
+                    request.TicketID = ticket.TicketID;
+                    request.ProjectID = ticket.ProjectID;
+                    request.IsClientBillable = true;
+                    request.Type = "Project";
+                    request.TicketID = ticketId;
+                }
+                else
+                {
+                    request.Type = "Schedule-Note";
+                    request.Note = startInfo;
+                }
+            }
+            else if (currentState == ActionState.Meeting)
+            {
+                request.Type = "Schedule-Note";
+                request.Note = startInfo;
+            }
+            else if (currentState == ActionState.Lunch || currentState == ActionState.Break)
+            {
+                request.Type = "Non-Project";
+                request.Note = currentState.ToString();
+            }
+            else
+            {
+                request.Type = "Schedule-Note";
+                request.Note = currentState.ToString();
+            }
+
             request.userFriendlyDuration = (DateTime.Now - startDate).ToString();
 
             request.Send(userContext);

@@ -15,6 +15,7 @@ namespace MyButtonThing
 
         public ActionState ExistingState { get; private set; }
         public ActionState NewState { get; private set; }
+        public string ExtraInfo { get; private set; }
 
         public ActionChangeDialog(ActionState currentState)
         {
@@ -31,7 +32,10 @@ namespace MyButtonThing
 
         private void btnMeeting_Click(object sender, EventArgs e)
         {
-            this.Close(ActionState.Meeting);
+            //this.Close(ActionState.Meeting);
+            btnMeeting.Visible = false;
+            txtMeeting.Visible = true;
+            //txtMeeting.Focus();
         }
 
         private void Close(ActionState reason)
@@ -59,7 +63,28 @@ namespace MyButtonThing
 
         private void btnTicket_Click(object sender, EventArgs e)
         {
-            this.Close(ActionState.Ticket);
+            //this.Close(ActionState.Ticket);
+            btnTicket.Visible = false;
+            txtTicketNumber.Visible = true;
+            //txtTicketNumber.Focus();
+        }
+
+        private void txtMeeting_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\n' || e.KeyChar == '\r')
+            {
+                ExtraInfo = txtMeeting.Text;
+                this.Close(ActionState.Meeting);
+            }
+        }
+
+        private void txtTicketNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\n' || e.KeyChar == '\r')
+            {
+                ExtraInfo = txtTicketNumber.Text;
+                this.Close(ActionState.Ticket);
+            }
         }
 
     }

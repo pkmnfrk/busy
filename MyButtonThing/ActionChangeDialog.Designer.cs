@@ -35,6 +35,8 @@
             this.btnBreak = new System.Windows.Forms.Button();
             this.btnNothing = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.txtMeeting = new MyButtonThing.PlaceholderTextBox();
+            this.txtTicketNumber = new MyButtonThing.PlaceholderTextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +45,9 @@
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.btnMeeting);
+            this.flowLayoutPanel1.Controls.Add(this.txtMeeting);
             this.flowLayoutPanel1.Controls.Add(this.btnTicket);
+            this.flowLayoutPanel1.Controls.Add(this.txtTicketNumber);
             this.flowLayoutPanel1.Controls.Add(this.btnLunch);
             this.flowLayoutPanel1.Controls.Add(this.btnBreak);
             this.flowLayoutPanel1.Controls.Add(this.btnNothing);
@@ -67,7 +71,7 @@
             // 
             // btnTicket
             // 
-            this.btnTicket.Location = new System.Drawing.Point(3, 44);
+            this.btnTicket.Location = new System.Drawing.Point(3, 70);
             this.btnTicket.Name = "btnTicket";
             this.btnTicket.Size = new System.Drawing.Size(281, 35);
             this.btnTicket.TabIndex = 1;
@@ -77,7 +81,7 @@
             // 
             // btnLunch
             // 
-            this.btnLunch.Location = new System.Drawing.Point(3, 85);
+            this.btnLunch.Location = new System.Drawing.Point(3, 137);
             this.btnLunch.Name = "btnLunch";
             this.btnLunch.Size = new System.Drawing.Size(281, 35);
             this.btnLunch.TabIndex = 3;
@@ -87,7 +91,7 @@
             // 
             // btnBreak
             // 
-            this.btnBreak.Location = new System.Drawing.Point(3, 126);
+            this.btnBreak.Location = new System.Drawing.Point(3, 178);
             this.btnBreak.Name = "btnBreak";
             this.btnBreak.Size = new System.Drawing.Size(281, 35);
             this.btnBreak.TabIndex = 4;
@@ -97,7 +101,7 @@
             // 
             // btnNothing
             // 
-            this.btnNothing.Location = new System.Drawing.Point(3, 167);
+            this.btnNothing.Location = new System.Drawing.Point(3, 219);
             this.btnNothing.Name = "btnNothing";
             this.btnNothing.Size = new System.Drawing.Size(281, 35);
             this.btnNothing.TabIndex = 0;
@@ -107,13 +111,33 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(3, 208);
+            this.btnCancel.Location = new System.Drawing.Point(290, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(281, 35);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // txtMeeting
+            // 
+            this.txtMeeting.Location = new System.Drawing.Point(3, 44);
+            this.txtMeeting.Name = "txtMeeting";
+            this.txtMeeting.Placeholder = "Meeting Name";
+            this.txtMeeting.Size = new System.Drawing.Size(281, 20);
+            this.txtMeeting.TabIndex = 6;
+            this.txtMeeting.Visible = false;
+            this.txtMeeting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMeeting_KeyPress);
+            // 
+            // txtTicketNumber
+            // 
+            this.txtTicketNumber.Location = new System.Drawing.Point(3, 111);
+            this.txtTicketNumber.Name = "txtTicketNumber";
+            this.txtTicketNumber.Placeholder = "Ticket #";
+            this.txtTicketNumber.Size = new System.Drawing.Size(281, 20);
+            this.txtTicketNumber.TabIndex = 6;
+            this.txtTicketNumber.Visible = false;
+            this.txtTicketNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTicketNumber_KeyPress);
             // 
             // ActionChangeDialog
             // 
@@ -131,6 +155,7 @@
             this.Text = "What\'s happening?";
             this.TopMost = true;
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +170,7 @@
         private System.Windows.Forms.Button btnLunch;
         private System.Windows.Forms.Button btnBreak;
         private System.Windows.Forms.Button btnCancel;
+        private PlaceholderTextBox txtTicketNumber;
+        private PlaceholderTextBox txtMeeting;
     }
 }
