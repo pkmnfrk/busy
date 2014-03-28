@@ -121,10 +121,19 @@
   <data name="icoGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\icoGreen.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icoGreenBusy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\icoGreen3.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icoGrey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\icoGreen2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icoGreyBusy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\icoGreen21.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icoRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\icoGreen1.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icoRedBusy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\icoGreen11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

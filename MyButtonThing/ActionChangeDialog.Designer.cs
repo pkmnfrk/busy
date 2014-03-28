@@ -30,13 +30,13 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnMeeting = new System.Windows.Forms.Button();
+            this.txtMeeting = new MyButtonThing.PlaceholderTextBox();
             this.btnTicket = new System.Windows.Forms.Button();
+            this.txtTicketNumber = new MyButtonThing.PlaceholderTextBox();
             this.btnLunch = new System.Windows.Forms.Button();
             this.btnBreak = new System.Windows.Forms.Button();
             this.btnNothing = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtMeeting = new MyButtonThing.PlaceholderTextBox();
-            this.txtTicketNumber = new MyButtonThing.PlaceholderTextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +69,16 @@
             this.btnMeeting.UseVisualStyleBackColor = true;
             this.btnMeeting.Click += new System.EventHandler(this.btnMeeting_Click);
             // 
+            // txtMeeting
+            // 
+            this.txtMeeting.Location = new System.Drawing.Point(3, 44);
+            this.txtMeeting.Name = "txtMeeting";
+            this.txtMeeting.Placeholder = "Meeting Name";
+            this.txtMeeting.Size = new System.Drawing.Size(281, 20);
+            this.txtMeeting.TabIndex = 6;
+            this.txtMeeting.Visible = false;
+            this.txtMeeting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMeeting_KeyPress);
+            // 
             // btnTicket
             // 
             this.btnTicket.Location = new System.Drawing.Point(3, 70);
@@ -78,6 +88,16 @@
             this.btnTicket.Text = "Working on a Ticket";
             this.btnTicket.UseVisualStyleBackColor = true;
             this.btnTicket.Click += new System.EventHandler(this.btnTicket_Click);
+            // 
+            // txtTicketNumber
+            // 
+            this.txtTicketNumber.Location = new System.Drawing.Point(3, 111);
+            this.txtTicketNumber.Name = "txtTicketNumber";
+            this.txtTicketNumber.Placeholder = "Ticket #";
+            this.txtTicketNumber.Size = new System.Drawing.Size(281, 20);
+            this.txtTicketNumber.TabIndex = 6;
+            this.txtTicketNumber.Visible = false;
+            this.txtTicketNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTicketNumber_KeyPress);
             // 
             // btnLunch
             // 
@@ -119,26 +139,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtMeeting
-            // 
-            this.txtMeeting.Location = new System.Drawing.Point(3, 44);
-            this.txtMeeting.Name = "txtMeeting";
-            this.txtMeeting.Placeholder = "Meeting Name";
-            this.txtMeeting.Size = new System.Drawing.Size(281, 20);
-            this.txtMeeting.TabIndex = 6;
-            this.txtMeeting.Visible = false;
-            this.txtMeeting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMeeting_KeyPress);
-            // 
-            // txtTicketNumber
-            // 
-            this.txtTicketNumber.Location = new System.Drawing.Point(3, 111);
-            this.txtTicketNumber.Name = "txtTicketNumber";
-            this.txtTicketNumber.Placeholder = "Ticket #";
-            this.txtTicketNumber.Size = new System.Drawing.Size(281, 20);
-            this.txtTicketNumber.TabIndex = 6;
-            this.txtTicketNumber.Visible = false;
-            this.txtTicketNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTicketNumber_KeyPress);
-            // 
             // ActionChangeDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,6 +152,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ActionChangeDialog";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "What\'s happening?";
             this.TopMost = true;
             this.flowLayoutPanel1.ResumeLayout(false);

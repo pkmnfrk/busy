@@ -23,6 +23,8 @@ namespace MyButtonThing
 
             ExistingState = currentState;
             NewState = currentState;
+            ExtraInfo = "";
+
         }
 
         private void btnBreak_Click(object sender, EventArgs e)
@@ -87,5 +89,16 @@ namespace MyButtonThing
             }
         }
 
+        public void Dismiss()
+        {
+            Action action = () =>
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                this.Close();
+            };
+
+            action();
+
+        }
     }
 }

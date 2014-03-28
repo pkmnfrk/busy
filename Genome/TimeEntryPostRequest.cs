@@ -16,6 +16,7 @@ namespace Genome
         public int UserID { get; set; }
         public int? ID { get; set; }
         public int? TimeSheetCacheID { get; set; }
+        public int? TimeSheetCategoryID { get; set; }
         public int? ReviewNote { get; set; }
         public int? ProjectID { get; set; }
         public int? TicketID { get; set; }
